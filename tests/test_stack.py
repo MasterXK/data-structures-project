@@ -1,17 +1,29 @@
 """Здесь надо написать тесты с использованием unittest для модуля stack."""
 from src.stack import Stack
+import unittest
 
 
-def test_pop():
-    stack = Stack()
-    stack.push('data1')
-    stack.push('data2')
-    data = stack.pop()
+class TestStack(unittest.TestCase):
+    def test_pop(self):
+        stack = Stack()
+        stack.push('data1')
+        stack.push('data2')
+        data = stack.pop()
 
-    assert data == 'data2'
+        self.assertEqual(data, 'data2')
 
-    data = stack.pop()
+        data = stack.pop()
 
-    assert stack.top is None
+        self.assertIs(stack.top, None)
 
-    assert data == 'data1'
+        self.assertEqual(data, 'data1')
+
+    def test_str(self):
+        stack = Stack()
+
+        self.assertEqual(str(stack), '')
+
+        stack.push('data1')
+        stack.push('data2')
+
+        self.assertEqual(str(stack), 'data2\ndata1')
