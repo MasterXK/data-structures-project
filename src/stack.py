@@ -42,3 +42,16 @@ class Stack:
         self.top = self.top.next_node
 
         return data
+
+    def __str__(self):
+        if self.top is None:
+            return ''
+
+        result = f'{self.top.data}'
+        node = self.top.next_node
+        while node:
+            data = node.data
+            result = f'{result}\n{data}'
+            node = node.next_node
+
+        return result
